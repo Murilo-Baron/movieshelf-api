@@ -4,73 +4,102 @@
   <meta charset="UTF-8" />
   <title>MovieShelf – Catálogo de Filmes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap 5 -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  />
+
+  <!-- Seu CSS -->
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+  <!-- TOP BAR -->
   <header class="top-bar">
-    <div class="top-bar__logo">
-      <span class="logo-mark">M</span>
-      <span class="logo-text">MovieShelf</span>
+    <div class="container-xl d-flex justify-content-between align-items-center">
+      <div class="top-bar__logo">
+        <span class="logo-mark">M</span>
+        <span class="logo-text">MovieShelf</span>
+      </div>
+      <button id="open-modal" class="btn btn--primary">
+        + Novo filme
+      </button>
     </div>
-    <button id="open-modal" class="btn btn--primary">
-      + Novo filme
-    </button>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
       <div class="hero__gradient"></div>
-      <div class="hero__content">
-        <h1>Seu catálogo pessoal de filmes</h1>
-        <p>
-          Adicione seus filmes favoritos, organize por nota e tags, e use esta
-          interface para testar sua API em Node + Mongo.
-        </p>
+      <div class="container-xl">
+        <div class="hero__content">
+          <h1>Seu catálogo pessoal de filmes</h1>
+          <p>
+            Adicione seus filmes favoritos, organize por nota e tags, e use esta
+            interface para testar sua API em Node + Mongo.
+          </p>
+        </div>
       </div>
     </section>
 
+    <!-- CONTEÚDO -->
     <section class="content">
-      <div class="toolbar">
-        <div class="toolbar__left">
-          <h2>Minha coleção</h2>
-          <span id="movie-count" class="movie-count">0 filmes</span>
-        </div>
-        <div class="toolbar__right">
-          <input
-            type="text"
-            id="search-input"
-            class="input"
-            placeholder="Buscar por título..."
-            aria-label="Buscar filme"
-          />
-          <select id="sort-select" class="select" aria-label="Ordenar resultados">
-            <option value="createdAt">Mais recentes</option>
-            <option value="title">Titulo (A–Z)</option>
-            <option value="rating">Maior nota</option>
-            <option value="year">Ano (mais novo)</option>
-          </select>
-        </div>
-      </div>
+      <div class="container-xl">
+        <div class="toolbar row gy-2 align-items-center">
+          <div class="toolbar__left col-12 col-md-6">
+            <h2>Minha coleção</h2>
+            <span id="movie-count" class="movie-count">0 filmes</span>
+          </div>
 
-      <div id="status-message" class="status-message" hidden></div>
+          <div
+            class="toolbar__right col-12 col-md-6 d-flex justify-content-md-end flex-wrap gap-2"
+          >
+            <input
+              type="text"
+              id="search-input"
+              class="input flex-grow-1"
+              placeholder="Buscar por título..."
+              aria-label="Buscar filme"
+            />
+            <select
+              id="sort-select"
+              class="select"
+              aria-label="Ordenar resultados"
+            >
+              <option value="createdAt">Mais recentes</option>
+              <option value="title">Título (A–Z)</option>
+              <option value="rating">Maior nota</option>
+              <option value="year">Ano (mais novo)</option>
+            </select>
+          </div>
+        </div>
 
-      <div id="movie-grid" class="movie-grid">
-        <!-- cards via JS -->
+        <div id="status-message" class="status-message" hidden></div>
+
+        <div id="movie-grid" class="movie-grid">
+          <!-- cards via JS -->
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- MODAL -->
-  <div id="modal-backdrop" class="modal-backdrop" hidden>
-    <div class="modal">
-      <div class="modal__header">
+  <!-- MODAL CUSTOM (não é o modal do Bootstrap) -->
+  <div id="modal-backdrop" class="ms-modal-backdrop" hidden>
+    <div class="ms-modal">
+      <div class="ms-modal__header">
         <h3>Novo filme</h3>
-        <button id="close-modal" class="modal__close" aria-label="Fechar">
+        <button
+          id="close-modal"
+          class="ms-modal__close"
+          type="button"
+          aria-label="Fechar"
+        >
           ✕
         </button>
       </div>
 
-      <form id="movie-form" class="modal__body">
+      <form id="movie-form" class="ms-modal__body">
         <div class="field">
           <label for="title">Título *</label>
           <input
@@ -126,12 +155,18 @@
   </div>
 
   <footer class="footer">
-    <p>
-      API: <code>http://localhost:4001/api/movies</code> · Backend em Node + Mongo
-      · Interface feita por <strong>Murilo Baron</strong>
-    </p>
+    <div class="container-xl text-center">
+      <p>
+        API: <code>http://localhost:4001/api/movies</code> · Backend em Node + Mongo
+        · Interface feita por <strong>Murilo Baron</strong>
+      </p>
+    </div>
   </footer>
 
+  <!-- Bootstrap JS (se quiser usar componentes dele depois) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Seu JS -->
   <script src="./app.js"></script>
 </body>
 </html>
