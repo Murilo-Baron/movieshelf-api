@@ -22,13 +22,11 @@ const movieSchema = new Schema(
     tags: {
       type: [String],
       default: [],
-    },
+    }
   },
   {
-    timestamps: true, // createdAt, updatedAt
+    timestamps: true // createdAt, updatedAt
   }
 );
 
-const Movie = model("Movie", movieSchema);
-
-module.exports = Movie;
+module.exports = model("Movie", movieSchema);

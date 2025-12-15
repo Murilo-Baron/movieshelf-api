@@ -34,8 +34,12 @@ router.post("/", async (req, res, next) => {
   try {
     const { title, year, rating, tags } = req.body;
 
+    if (!title || !title.trim()) {
+      return res.status(400).json({ message: "Título é obrigatório" });
+    }
+
     const movie = await Movie.create({
-      title,
+      title: title.trim(),
       year,
       rating,
       tags,
@@ -52,11 +56,12 @@ router.patch("/:id", async (req, res, next) => {
   try {
     const { title, year, rating, tags } = req.body;
 
-    const movie = await Movie.findByIdAndUpdate(
-      req.params.id,
-      { title, year, rating, tags },
-      { new: true, runValidators: true }
-    );
+    const update = { title, year, rating, tags };
+
+    const movie = await Movie.findByIdAndUpdate(req.params.id, update, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!movie) {
       return res.status(404).json({ message: "Filme não encontrado" });

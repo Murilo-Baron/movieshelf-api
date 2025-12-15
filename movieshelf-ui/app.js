@@ -258,3 +258,21 @@ sortSelect.addEventListener("change", () => renderMovies());
 
 // inicialização
 document.addEventListener("DOMContentLoaded", fetchMovies);
+
+const rating = document.createElement("div");
+rating.className = "movie-card__rating";
+if (movie.rating !== undefined && movie.rating !== null) {
+  rating.textContent = `★ ${movie.rating}`;
+} else if (movie.imdbRating) {
+  rating.textContent = `IMDb ${movie.imdbRating}`;
+} else {
+  rating.textContent = "★ sem nota";
+}
+
+// Poster opcional (se quiser deixar ainda mais Netflix):
+if (movie.posterUrl) {
+  const poster = document.createElement("div");
+  poster.className = "movie-card__poster";
+  poster.style.backgroundImage = `url(${movie.posterUrl})`;
+  card.prepend(poster); // adiciona no topo
+}
